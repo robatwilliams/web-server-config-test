@@ -3,8 +3,7 @@ source ./assertions.sh
 source ./helpers.sh
 
 @test "root returns index page" {
-  request ""
+  requestOk ""
 
-  expectOk
   expectHeader "Content-Type: text/html"
 }

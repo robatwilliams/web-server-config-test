@@ -19,3 +19,8 @@ request() {
     return 1
   fi
 }
+
+requestOk() {
+  request "$@"
+  expectOk
+}

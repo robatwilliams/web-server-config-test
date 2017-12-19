@@ -3,9 +3,8 @@ source ./assertions.sh
 source ./helpers.sh
 
 @test "client-side routing: unknown path returns index page" {
-  request "/someClientSideRoute"
+  requestOk "/someClientSideRoute"
 
-  expectOk
   expectHeader "Content-Type: text/html"
 }
 
