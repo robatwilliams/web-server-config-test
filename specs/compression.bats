@@ -3,7 +3,7 @@ source ./assertions.sh
 source ./helpers.sh
 
 @test "compression: uncompressed by default, js" {
-  request "/vendor.e1cafb2f73707a2b414e.js"
+  request "$bundleBase.js"
 
   expectOk
   expectHeaderAbsent "Content-Encoding"
@@ -11,7 +11,7 @@ source ./helpers.sh
 }
 
 @test "compression: uncompressed by default, source map" {
-  request "/vendor.e1cafb2f73707a2b414e.js.map"
+  request "$bundleBase.js.map"
 
   expectOk
   expectHeaderAbsent "Content-Encoding"
@@ -19,7 +19,7 @@ source ./helpers.sh
 }
 
 @test "compression: gzip when requested, js" {
-  request "/vendor.e1cafb2f73707a2b414e.js" "Accept-Encoding: gzip"
+  request "$bundleBase.js" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"
@@ -27,7 +27,7 @@ source ./helpers.sh
 }
 
 @test "compression: gzip when requested, source map" {
-  request "/vendor.e1cafb2f73707a2b414e.js.map" "Accept-Encoding: gzip"
+  request "$bundleBase.js.map" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"
@@ -35,7 +35,7 @@ source ./helpers.sh
 }
 
 @test "compression: preserves original content type, js" {
-  request "/vendor.e1cafb2f73707a2b414e.js" "Accept-Encoding: gzip"
+  request "$bundleBase.js" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"
@@ -43,7 +43,7 @@ source ./helpers.sh
 }
 
 @test "compression: preserves original content type, source map" {
-  request "/vendor.e1cafb2f73707a2b414e.js.map" "Accept-Encoding: gzip"
+  request "$bundleBase.js.map" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"

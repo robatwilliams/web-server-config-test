@@ -1,5 +1,8 @@
 resolve="react-starter.localhost:80:127.0.0.1"
 
+# Must also update expected Content-Length in compression tests
+bundleBase="/vendor.e1cafb2f73707a2b414e"
+
 request() {
   local url="http://react-starter.localhost$1"
 

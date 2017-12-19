@@ -18,14 +18,14 @@ source ./helpers.sh
 }
 
 @test "caching: bundles are cacheable effectively forever, js, uncompressed version" {
-  request "/vendor.e1cafb2f73707a2b414e.js"
+  request "$bundleBase.js"
 
   expectOk
   expectHeader "Cache-Control: public, max-age=31536000"
 }
 
 @test "caching: bundles are cacheable effectively forever, js, gzipped version" {
-  request "/vendor.e1cafb2f73707a2b414e.js" "Accept-Encoding: gzip"
+  request "$bundleBase.js" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"
@@ -33,14 +33,14 @@ source ./helpers.sh
 }
 
 @test "caching: bundles are cacheable effectively forever, source map, uncompressed version" {
-  request "/vendor.e1cafb2f73707a2b414e.js.map"
+  request "$bundleBase.js.map"
 
   expectOk
   expectHeader "Cache-Control: public, max-age=31536000"
 }
 
 @test "caching: bundles are cacheable effectively forever, source map, gzipped version" {
-  request "/vendor.e1cafb2f73707a2b414e.js.map" "Accept-Encoding: gzip"
+  request "$bundleBase.js.map" "Accept-Encoding: gzip"
 
   expectOk
   expectHeader "Content-Encoding: gzip"
