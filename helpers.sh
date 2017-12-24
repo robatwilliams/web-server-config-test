@@ -1,15 +1,19 @@
-resolve="react-starter.localhost:80:127.0.0.1"
-
 # Must also update expected Content-Length in compression tests
 bundleBase="/vendor.e1cafb2f73707a2b414e"
 
-request() {
-  local url="http://react-starter.localhost$1"
+requestUrl() {
+  local url="$1"
 
   run curl --silent --show-error \
     --head --request GET \
     --header "$2" \
-    --resolve $resolve \
+    --resolve "react-starter.localhost:80:127.0.0.1" \
+    --resolve "react-starter.localhost:443:127.0.0.1" \
+    --resolve "www.react-starter.localhost:80:127.0.0.1" \
+    --resolve "www.react-starter.localhost:443:127.0.0.1" \
+    --resolve "unknown.react-starter.localhost:80:127.0.0.1" \
+    --resolve "unknown.react-starter.localhost:443:127.0.0.1" \
+    --insecure \
     $url
   headers="$output"
 
@@ -18,6 +22,10 @@ request() {
     echo "$output" | indent
     return 1
   fi
+}
+
+request() {
+  requestUrl "https://react-starter.localhost$1" "$2" "$3" "$4" "$5"
 }
 
 requestOk() {

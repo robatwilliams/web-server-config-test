@@ -26,3 +26,7 @@ setup() {
 @test "security headers: disclose referrer path only on same origin and HTTPS" {
   expectHeader "Referrer-Policy: strict-origin-when-cross-origin"
 }
+
+@test "security headers: require HTTPS" {
+  expectHeader "Strict-Transport-Security: max-age=15768000"
+}
